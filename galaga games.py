@@ -1,4 +1,5 @@
 import pgzrun
+from time import time
 
 WIDTH = 700
 HEIGHT = 700
@@ -15,6 +16,8 @@ score = 0
 direction = 1
 movedown = False
 youwin = False
+gameover = False
+Time = time()
 
 for n in range(4):
     for i in range(4):
@@ -74,6 +77,11 @@ def draw():
         i.draw()
     if youwin == True:
         win()
+    if gameover == True:
+        screen.fill("light blue")
+        screen.draw.text("Time's up, you lose", (300, 300))
+    total = time() - Time
+    screen.draw.text(str (total), (40,40))
  
 def win():
     global youwin
@@ -81,5 +89,11 @@ def win():
     screen.fill("light blue")
     screen.draw.text("You win!", (320,320))
 
+def time_up():
+    global gameover
+    gameover = True
+
+
+clock.schedule(time_up, 10.0)
 
 pgzrun.go()
